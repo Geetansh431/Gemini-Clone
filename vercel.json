@@ -1,0 +1,18 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "./",
+      "use": "@vercel/static-build",
+      "config": {
+        "vite": true
+      }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/.*",
+      "dest": "/"
+    }
+  ]
+}
