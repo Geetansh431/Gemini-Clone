@@ -1,7 +1,7 @@
 
-# Airbnb
+# Gemini 2.0
 
-This project is a web application that replicates the core functionalities of Airbnb, allowing users to book accommodations, manage listings, and handle bookings seamlessly. Built with a modern tech stack, this application aims to provide a user-friendly experience similar to Airbnb.
+This project is a React-based user interface for interacting with the Google Gemini API, utilizing the Generative AI SDK. The application allows users to input prompts and receive generative responses from the Gemini model.
 
 ## Features
 
