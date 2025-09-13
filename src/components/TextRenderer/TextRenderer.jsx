@@ -3,7 +3,7 @@ import './TextRenderer.css';
 
 /**
  * TextRenderer component that safely renders formatted text
- * Converts basic markdown-like formatting to React elements
+ * Converts markdown-like formatting to React elements
  * This is the safest approach as it doesn't use dangerouslySetInnerHTML
  */
 export const TextRenderer = ({ content, className = '' }) => {
@@ -13,26 +13,51 @@ export const TextRenderer = ({ content, className = '' }) => {
   const lines = content.split('\n');
   
   const renderLine = (line, index) => {
-    // Handle bold text (wrapped in **text**)
-    const parts = line.split(/(\*\*.*?\*\*)/g);
+    const trimmedLine = line.trim();
     
+    // Handle headings (##, ###, etc.)
+    if (trimmedLine.startsWith('#')) {
+      const headingMatch = trimmedLine.match(/^(#{1,6})\s*(.*)$/);
+      if (headingMatch) {
+        const level = headingMatch[1].length;
+        const text = headingMatch[2];
+        const HeadingTag = `h${Math.min(level, 6)}`;
+        return (
+          <HeadingTag key={index} className="text-heading">
+            {renderTextWithFormatting(text, index)}
+          </HeadingTag>
+        );
+      }
+    }
+    
+    // Handle empty lines with proper spacing
+    if (trimmedLine === '') {
+      return <div key={index} className="text-empty-line"></div>;
+    }
+    
+    // Regular text line with formatting
     return (
       <div key={index} className="text-line">
-        {parts.map((part, partIndex) => {
-          if (part.startsWith('**') && part.endsWith('**')) {
-            // Bold text
-            const boldText = part.slice(2, -2);
-            return <strong key={partIndex}>{boldText}</strong>;
-          } else if (part.trim() === '') {
-            // Empty line - render as line break
-            return <br key={partIndex} />;
-          } else {
-            // Regular text
-            return <span key={partIndex}>{part}</span>;
-          }
-        })}
+        {renderTextWithFormatting(line, index)}
       </div>
     );
+  };
+
+  const renderTextWithFormatting = (text, lineIndex) => {
+    // Handle bold text (wrapped in **text**) - improved regex to handle more cases
+    const parts = text.split(/(\*\*[^*\n]+\*\*)/g);
+    
+    return parts.map((part, partIndex) => {
+      if (part.startsWith('**') && part.endsWith('**') && part.length > 4) {
+        // Bold text - ensure it's not just **
+        const boldText = part.slice(2, -2).trim();
+        if (boldText) {
+          return <strong key={`${lineIndex}-${partIndex}`}>{boldText}</strong>;
+        }
+      }
+      // Regular text (including empty strings and malformed bold syntax)
+      return part ? <span key={`${lineIndex}-${partIndex}`}>{part}</span> : null;
+    }).filter(Boolean); // Remove null elements
   };
 
   return (

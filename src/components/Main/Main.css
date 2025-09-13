@@ -4,30 +4,65 @@
     padding-bottom: 15vh;
     position: relative;
 }
+
+/* Navigation - Responsive */
 .main .nav{
     display: flex;
     align-items: center;
     justify-content: space-between;
-    font-size: 22px;
-    padding: 20px;
+    font-size: 18px;
+    padding: 15px 20px;
     color: #585858;
+    border-bottom: 1px solid #f0f4f9;
+}
+
+.main .nav p {
+    font-weight: 600;
+    margin: 0;
+}
+
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.new-chat-btn {
+    background: #4285f4;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.new-chat-btn:hover {
+    background: #3367d6;
+    transform: translateY(-1px);
 }
 
 .main .nav img{
-    width: 40px;
+    width: 35px;
+    height: 35px;
     border-radius: 50%;
+    object-fit: cover;
 }
 
 .main-container{
     max-width: 900px;
     margin: auto;
+    padding: 0 15px;
 }
 .main .greet{
-    margin: 50px 0px;
-    font-size: 56px;
+    margin: 40px 0px;
+    font-size: 48px;
     color: #c4c7c5;
     font-weight: 500;
     padding: 20px;
+    text-align: center;
 }
 
 .main .greet span{
@@ -38,18 +73,21 @@
 
 .main .cards{
     display: grid;
-    grid-template-columns: repeat(auto-fill,minmax(180px,1fr));
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 15px;
     padding: 20px;
+    max-width: 100%;
 }
 
 .main .card{
-    height: 200px;
-    padding: 15px;
+    min-height: 180px;
+    padding: 20px;
     background-color: #f0f4f9;
-    border-radius: 10px;
+    border-radius: 12px;
     position: relative;
     cursor: pointer;
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
 }
 
 .main .card img{
@@ -69,24 +107,37 @@
 
 .main .card:hover{
     background-color: #dfe4ea;
-
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    border-color: #c4c7c5;
 }
 .main-bottom{
     position: absolute;
     bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
     width: 100%;
     max-width: 900px;
     padding: 0px 20px;
-    margin: auto;
+    background: linear-gradient(transparent, white 20%);
+    padding-top: 30px;
 }
 .search-box{
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 20px;
+    gap: 15px;
     background-color: #f0f4f9;
-    padding: 10px 20px;
+    padding: 12px 20px;
     border-radius: 50px;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.search-box:focus-within {
+    border-color: #4285f4;
+    box-shadow: 0 4px 16px rgba(66, 133, 244, 0.15);
 }
 .search-box img{
     width: 24px;
@@ -103,7 +154,12 @@
     border: none;
     outline: none;
     padding: 8px;
-    font-size: 18px;
+    font-size: 16px;
+    color: #333;
+}
+
+.search-box input::placeholder {
+    color: #9aa0a6;
 }
 
 .search-box input:disabled{
@@ -127,7 +183,8 @@
 .result{
     padding: 0px 5%;
     max-height: 70vh;
-    overflow-y: scroll;
+    overflow-y: auto;
+    margin-bottom: 20px;
 }
 
 .result::-webkit-scrollbar{
@@ -148,8 +205,38 @@
 
 .result-data{
     display: flex;
-    align-items: start;
+    align-items: flex-start;
     gap: 20px;
+    margin-bottom: 30px;
+}
+
+.response-content {
+    flex: 1;
+    min-width: 0; /* Allows text to wrap properly */
+}
+
+/* Response boundary styling */
+.response-end-indicator {
+    margin-top: 30px;
+    padding-top: 20px;
+    text-align: center;
+}
+
+.response-separator {
+    width: 60px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #4285f4, transparent);
+    margin: 0 auto 15px;
+    border-radius: 2px;
+}
+
+.response-complete-text {
+    color: #5f6368;
+    font-size: 13px;
+    font-weight: 500;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
 .loader{
@@ -207,4 +294,194 @@
 
 .retry-button:hover {
     background: #3367d6;
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+
+/* Tablet - 768px and below */
+@media (max-width: 768px) {
+    .main .nav {
+        font-size: 16px;
+        padding: 12px 15px;
+    }
+    
+    .main .greet {
+        font-size: 36px;
+        margin: 30px 0;
+        padding: 15px;
+    }
+    
+    .main .cards {
+        grid-template-columns: 1fr;
+        gap: 12px;
+        padding: 15px;
+    }
+    
+    .main .card {
+        min-height: 140px;
+        padding: 18px;
+    }
+    
+    .main .card p {
+        font-size: 16px;
+        line-height: 1.4;
+    }
+    
+    .main-bottom {
+        padding: 0 15px;
+        padding-top: 25px;
+    }
+    
+    .search-box {
+        gap: 12px;
+        padding: 10px 16px;
+    }
+    
+    .search-box input {
+        font-size: 15px;
+    }
+    
+    .result {
+        padding: 0 3%;
+    }
+    
+    .result-data {
+        gap: 15px;
+    }
+    
+    .result-title {
+        margin: 30px 0;
+        gap: 15px;
+    }
+    
+    .new-chat-btn {
+        padding: 6px 12px;
+        font-size: 13px;
+    }
+}
+
+/* Mobile - 480px and below */
+@media (max-width: 480px) {
+    .main {
+        padding-bottom: 18vh;
+    }
+    
+    .main .nav {
+        font-size: 15px;
+        padding: 10px 12px;
+    }
+    
+    .main .nav img {
+        width: 30px;
+        height: 30px;
+    }
+    
+    .main .greet {
+        font-size: 28px;
+        margin: 20px 0;
+        padding: 12px;
+    }
+    
+    .main-container {
+        padding: 0 10px;
+    }
+    
+    .main .cards {
+        padding: 12px;
+        gap: 10px;
+    }
+    
+    .main .card {
+        min-height: 120px;
+        padding: 15px;
+    }
+    
+    .main .card p {
+        font-size: 15px;
+    }
+    
+    .main .card img {
+        width: 30px;
+        padding: 4px;
+        bottom: 8px;
+        right: 8px;
+    }
+    
+    .search-box {
+        gap: 10px;
+        padding: 8px 14px;
+    }
+    
+    .search-box input {
+        font-size: 14px;
+        padding: 6px;
+    }
+    
+    .search-box img {
+        width: 20px;
+    }
+    
+    .main .bottom-info {
+        font-size: 12px;
+        padding: 0 10px;
+    }
+    
+    .result {
+        padding: 0 2%;
+    }
+    
+    .result-data {
+        gap: 12px;
+    }
+    
+    .result-data img {
+        width: 35px;
+    }
+    
+    .result-title {
+        margin: 25px 0;
+        gap: 12px;
+    }
+    
+    .result-title img {
+        width: 35px;
+    }
+    
+    .new-chat-btn {
+        padding: 5px 10px;
+        font-size: 12px;
+    }
+    
+    .nav-actions {
+        gap: 10px;
+    }
+}
+
+/* Extra small mobile - 360px and below */
+@media (max-width: 360px) {
+    .main .greet {
+        font-size: 24px;
+    }
+    
+    .main .cards {
+        padding: 8px;
+    }
+    
+    .main .card {
+        min-height: 100px;
+        padding: 12px;
+    }
+    
+    .main .card p {
+        font-size: 14px;
+    }
+    
+    .search-box {
+        padding: 6px 12px;
+    }
+    
+    .main-bottom {
+        padding: 0 10px;
+        padding-top: 20px;
+    }
 }

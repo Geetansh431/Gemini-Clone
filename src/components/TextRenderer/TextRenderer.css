@@ -1,14 +1,49 @@
 .text-renderer {
   line-height: 1.6;
   color: inherit;
+  font-size: 17px;
+  font-weight: 300;
 }
 
 .text-renderer .text-line {
-  margin-bottom: 0.5em;
+  margin-bottom: 0.8em;
+}
+
+.text-renderer .text-empty-line {
+  margin-bottom: 1em;
+  height: 0.5em;
+}
+
+.text-renderer .text-heading {
+  margin: 1.5em 0 1em 0;
+  font-weight: 600;
+  color: #333;
+}
+
+.text-renderer h1 {
+  font-size: 1.8em;
+  margin-bottom: 1.2em;
+}
+
+.text-renderer h2 {
+  font-size: 1.5em;
+  margin-bottom: 1em;
+}
+
+.text-renderer h3 {
+  font-size: 1.3em;
+  margin-bottom: 0.8em;
+}
+
+.text-renderer h4,
+.text-renderer h5,
+.text-renderer h6 {
+  font-size: 1.1em;
+  margin-bottom: 0.6em;
 }
 
 .text-renderer strong {
-  font-weight: bold;
+  font-weight: 600;
   color: inherit;
 }
 

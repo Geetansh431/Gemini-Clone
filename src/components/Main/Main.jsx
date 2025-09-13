@@ -6,13 +6,20 @@ import { TextRenderer } from '../TextRenderer/TextRenderer'
 
 export const Main = () => {
 
-    const {onSent,recentPrompt,showResult,loading,resultData,setInput,input,error,isProcessing} = useContext(Context)
+    const {onSent,recentPrompt,showResult,loading,resultData,setInput,input,error,isProcessing,newChat} = useContext(Context)
 
   return (
     <div className='main'>
       <div className="nav">
         <p>Gemini</p>
-        <img src={assets.user_icon} alt="" />
+        <div className="nav-actions">
+          {showResult && (
+            <button onClick={newChat} className="new-chat-btn">
+              New Chat
+            </button>
+          )}
+          <img src={assets.user_icon} alt="User" />
+        </div>
       </div>
       <div className="main-container">
 
@@ -24,19 +31,19 @@ export const Main = () => {
             <p>How can I help you today?</p>
         </div>
         <div className="cards">
-            <div className="card">
+            <div className="card" onClick={() => onSent("Suggest beautiful places to see on an upcoming road trip")}>
                 <p>Suggest beautiful places to see on an upcoming road trip</p>
                 <img src={assets.compass_icon} alt="" />
             </div>
-            <div className="card">
+            <div className="card" onClick={() => onSent("Briefly summarize this concept: urban planning")}>
                 <p>Briefly summarize this concept: urban planning</p>
                 <img src={assets.bulb_icon} alt="" />
             </div>
-            <div className="card">
-                <p>Brainstrom team bonding activities for our work retreat</p>
+            <div className="card" onClick={() => onSent("Brainstorm team bonding activities for our work retreat")}>
+                <p>Brainstorm team bonding activities for our work retreat</p>
                 <img src={assets.message_icon} alt="" />
             </div>
-            <div className="card">
+            <div className="card" onClick={() => onSent("Improve the readability of the following code")}>
                 <p>Improve the readability of the following code</p>
                 <img src={assets.code_icon} alt="" />
             </div>
@@ -48,23 +55,32 @@ export const Main = () => {
             <p>{recentPrompt}</p>
           </div>
           <div className="result-data">
-            <img src={assets.gemini_icon} alt="" />
-            {loading
-            ?<div className='loader'>
-              <hr />
-              <hr />
-              <hr />
+            <img src={assets.gemini_icon} alt="Gemini" />
+            <div className="response-content">
+              {loading
+              ?<div className='loader'>
+                <hr />
+                <hr />
+                <hr />
+                </div>
+              : error
+              ?<div className='error-message'>
+                <p>❌ {error}</p>
+                <button onClick={() => onSent(recentPrompt)} className='retry-button'>
+                  Try Again
+                </button>
               </div>
-            : error
-            ?<div className='error-message'>
-              <p>❌ {error}</p>
-              <button onClick={() => onSent(recentPrompt)} className='retry-button'>
-                Try Again
-              </button>
+              :<>
+                <TextRenderer content={resultData} />
+                {!loading && resultData && (
+                  <div className="response-end-indicator">
+                    <div className="response-separator"></div>
+                    <p className="response-complete-text">Response complete</p>
+                  </div>
+                )}
+              </>
+            }
             </div>
-            :<TextRenderer content={resultData} />
-          }
-            
           </div>
           </div>
       }
