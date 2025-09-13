@@ -2,6 +2,7 @@ import { useContext } from 'react'
 import './Main.css'
 import { assets } from '../../assets/assets'
 import { Context } from '../../context/Context'
+import TextRenderer from '../TextRenderer/TextRenderer'
 
 const Main = () => {
 
@@ -54,7 +55,7 @@ const Main = () => {
               <hr />
               <hr />
               </div>
-              :<p dangerouslySetInnerHTML={{__html:resultData}}></p>
+              :<TextRenderer content={resultData} />
           }
             
           </div>

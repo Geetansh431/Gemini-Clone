@@ -1,0 +1,17 @@
+.text-renderer {
+  line-height: 1.6;
+  color: inherit;
+}
+
+.text-renderer .text-line {
+  margin-bottom: 0.5em;
+}
+
+.text-renderer strong {
+  font-weight: bold;
+  color: inherit;
+}
+
+.text-renderer br {
+  line-height: 1.2;
+}
