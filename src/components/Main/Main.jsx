@@ -3,7 +3,6 @@ import './Main.css'
 import { assets } from '../../assets/assets'
 import { Context } from '../../context/Context'
 import { TextRenderer } from '../TextRenderer/TextRenderer'
-import { Sidebar } from '../Sidebar/Sidebar'
 
 export const Main = () => {
 
@@ -11,7 +10,6 @@ export const Main = () => {
 
   return (
     <div className='app-container'>
-      <Sidebar />
       
       <div className="main main-with-sidebar">
         <div className={`main-container ${!showResult ? 'welcome-state' : 'chat-state'}`}>
@@ -24,31 +22,79 @@ export const Main = () => {
               <p>How can I help you today?</p>
           </div>
           <div className="cards">
-              <div className="card" onClick={() => onSent("Suggest beautiful places to see on an upcoming road trip")}>
+              <div 
+                className="card" 
+                onClick={() => onSent("Suggest beautiful places to see on an upcoming road trip")}
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    onSent("Suggest beautiful places to see on an upcoming road trip");
+                  }
+                }}
+                aria-label="Suggest beautiful places to see on an upcoming road trip"
+              >
                   <p>Suggest beautiful places to see on an upcoming road trip</p>
-                  <img src={assets.compass_icon} alt="" />
+                  <img src={assets.compass_icon} alt="Compass icon" />
               </div>
-              <div className="card" onClick={() => onSent("Briefly summarize this concept: urban planning")}>
+              <div 
+                className="card" 
+                onClick={() => onSent("Briefly summarize this concept: urban planning")}
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    onSent("Briefly summarize this concept: urban planning");
+                  }
+                }}
+                aria-label="Briefly summarize this concept: urban planning"
+              >
                   <p>Briefly summarize this concept: urban planning</p>
-                  <img src={assets.bulb_icon} alt="" />
+                  <img src={assets.bulb_icon} alt="Light bulb icon" />
               </div>
-              <div className="card" onClick={() => onSent("Brainstorm team bonding activities for our work retreat")}>
+              <div 
+                className="card" 
+                onClick={() => onSent("Brainstorm team bonding activities for our work retreat")}
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    onSent("Brainstorm team bonding activities for our work retreat");
+                  }
+                }}
+                aria-label="Brainstorm team bonding activities for our work retreat"
+              >
                   <p>Brainstorm team bonding activities for our work retreat</p>
-                  <img src={assets.message_icon} alt="" />
+                  <img src={assets.message_icon} alt="Message icon" />
               </div>
-              <div className="card" onClick={() => onSent("Improve the readability of the following code")}>
+              <div 
+                className="card" 
+                onClick={() => onSent("Improve the readability of the following code")}
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    onSent("Improve the readability of the following code");
+                  }
+                }}
+                aria-label="Improve the readability of the following code"
+              >
                   <p>Improve the readability of the following code</p>
-                  <img src={assets.code_icon} alt="" />
+                  <img src={assets.code_icon} alt="Code icon" />
               </div>
           </div>
           </>
           :<div className='result'>
             <div className="result-title">
-              <img src={assets.user_icon} alt="" />
+              <img src={assets.user_icon} alt="User avatar" />
               <p>{recentPrompt}</p>
             </div>
             <div className="result-data">
-              <img src={assets.gemini_icon} alt="Gemini" />
+              <img src={assets.gemini_icon} alt="Gemini AI assistant" />
               <div className="response-content">
                 {loading
                 ?<div className='loader'>
@@ -96,9 +142,9 @@ export const Main = () => {
                       aria-label="Enter your message"
                   />
                   <div>
-                      <img src={assets.gallery_icon} alt="" />
-                      <img src={assets.mic_icon} alt="" />
-                     {input && !isProcessing?<img onClick={()=>onSent()} src={assets.send_icon} alt="" />:null} 
+                      <img src={assets.gallery_icon} alt="Upload image" title="Upload image" />
+                      <img src={assets.mic_icon} alt="Voice input" title="Voice input" />
+                     {input && !isProcessing?<img onClick={()=>onSent()} src={assets.send_icon} alt="Send message" title="Send message" />:null} 
                   </div>
               </div>
               <p className="bottom-info">
