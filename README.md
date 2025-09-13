@@ -33,9 +33,11 @@ npm install
 3. **Set up your API key**
    - Get your API key from [Google AI Studio](https://makersuite.google.com/app/apikey)
    - Copy `.env.example` to `.env`:
+     
      ```bash
      cp .env.example .env
      ```
+     
    - Update the `VITE_GEMINI_API_KEY` in `.env` with your actual API key
 
 4. **Start the server**

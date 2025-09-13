@@ -172,3 +172,29 @@
     font-weight: 300;
     line-height: 1.8;
 }
+
+.error-message {
+    padding: 20px;
+    text-align: center;
+    color: #ff4444;
+}
+
+.error-message p {
+    margin-bottom: 15px;
+    font-size: 16px;
+}
+
+.retry-button {
+    background: #4285f4;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background 0.3s;
+}
+
+.retry-button:hover {
+    background: #3367d6;
+}

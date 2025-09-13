@@ -6,7 +6,7 @@ import TextRenderer from '../TextRenderer/TextRenderer'
 
 const Main = () => {
 
-    const {onSent,recentPrompt,showResult,loading,resultData,setInput,input} = useContext(Context)
+    const {onSent,recentPrompt,showResult,loading,resultData,setInput,input,error} = useContext(Context)
 
   return (
     <div className='main'>
@@ -55,7 +55,14 @@ const Main = () => {
               <hr />
               <hr />
               </div>
-              :<TextRenderer content={resultData} />
+            : error
+            ?<div className='error-message'>
+              <p>❌ {error}</p>
+              <button onClick={() => onSent(recentPrompt)} className='retry-button'>
+                Try Again
+              </button>
+            </div>
+            :<TextRenderer content={resultData} />
           }
             
           </div>
