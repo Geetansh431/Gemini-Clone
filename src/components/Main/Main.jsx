@@ -18,7 +18,7 @@ export const Main = () => {
           ?<>
           
           <div className="greet">
-              <p><span>Hello, Geetansh.</span></p>
+              <p><span>Hello, User.</span></p>
               <p>How can I help you today?</p>
           </div>
           <div className="cards">
@@ -111,12 +111,6 @@ export const Main = () => {
                 </div>
                 :<>
                   <TextRenderer content={resultData} />
-                  {!loading && resultData && (
-                    <div className="response-end-indicator">
-                      <div className="response-separator"></div>
-                      <p className="response-complete-text">Response complete</p>
-                    </div>
-                  )}
                 </>
               }
               </div>

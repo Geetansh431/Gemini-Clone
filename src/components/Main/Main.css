@@ -140,7 +140,17 @@
     background: linear-gradient(transparent, #0f0f0f 20%);
     padding-top: 30px;
     z-index: 100;
-    transition: left 0.3s ease, right 0.3s ease;
+    transition: all 0.3s ease;
+    animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-2px);
+    }
 }
 
 /* Full width bottom section */
@@ -154,19 +164,40 @@
     justify-content: space-between;
     gap: 15px;
     background: linear-gradient(135deg, #1e1e1e 0%, #2a2a2a 100%);
-    padding: 12px 20px;
+    padding: 14px 24px;
     border-radius: 50px;
     border: 2px solid #3c4043;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.2), 0 2px 4px rgba(0,0,0,0.1);
-    backdrop-filter: blur(10px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15), 0 2px 8px rgba(0,0,0,0.1);
+    backdrop-filter: blur(20px);
+    position: relative;
+    overflow: hidden;
+}
+
+.search-box::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(138, 180, 248, 0.1), transparent);
+    transition: left 0.6s ease;
+}
+
+.search-box:hover::before {
+    left: 100%;
 }
 
 .search-box:focus-within {
     border-color: #8ab4f8;
-    box-shadow: 0 8px 25px rgba(138, 180, 248, 0.25), 0 4px 12px rgba(0,0,0,0.2);
-    transform: translateY(-1px);
+    box-shadow: 0 12px 30px rgba(138, 180, 248, 0.3), 0 6px 15px rgba(0,0,0,0.2);
+    transform: translateY(-2px) scale(1.01);
     animation: pulse 2s infinite;
+}
+
+.search-box:focus-within::before {
+    left: 100%;
 }
 
 @keyframes pulse {
@@ -180,28 +211,72 @@
 .search-box img{
     width: 24px;
     cursor: pointer;
-    transition: all 0.2s ease;
-    padding: 4px;
-    border-radius: 6px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    padding: 8px;
+    border-radius: 10px;
+    position: relative;
+    z-index: 2;
+    background: linear-gradient(135deg, #2a2a2a 0%, #3a3a3a 100%);
+    border: 1px solid #4a4a4a;
+    filter: brightness(1.2) contrast(1.1);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
 }
 
 .search-box img:hover{
-    opacity: 0.8;
-    background-color: rgba(138, 180, 248, 0.1);
-    transform: scale(1.1);
+    opacity: 1;
+    background: linear-gradient(135deg, #3a3a3a 0%, #4a4a4a 100%);
+    border-color: #8ab4f8;
+    transform: scale(1.15) translateY(-1px);
+    box-shadow: 0 6px 16px rgba(138, 180, 248, 0.3);
+    filter: brightness(1.4) contrast(1.2);
+}
+
+.search-box img:active{
+    transform: scale(1.05) translateY(0);
+    background: linear-gradient(135deg, #4a4a4a 0%, #5a5a5a 100%);
 }
 .search-box input{
     flex: 1;
     background: transparent;
     border: none;
     outline: none;
-    padding: 8px;
+    padding: 8px 12px;
     font-size: 16px;
     color: #e3e3e3;
+    position: relative;
+    z-index: 2;
+    transition: all 0.3s ease;
 }
 
 .search-box input::placeholder {
     color: #80868b;
+    transition: all 0.3s ease;
+    opacity: 0.7;
+}
+
+.search-box input:focus::placeholder {
+    opacity: 0.5;
+    transform: translateY(-2px);
+}
+
+.search-box input:focus {
+    color: #f8f9fa;
+}
+
+/* Typing indicator animation */
+@keyframes typing {
+    0%, 50% {
+        opacity: 1;
+    }
+    51%, 100% {
+        opacity: 0;
+    }
+}
+
+.search-box input:focus::after {
+    content: '|';
+    animation: typing 1s infinite;
+    color: #8ab4f8;
 }
 
 .search-box input:disabled{
@@ -213,6 +288,51 @@
     display: flex;
     align-items: center;
     gap: 15px;
+    position: relative;
+}
+
+/* Special styling for send button */
+.search-box img[alt="Send message"] {
+    background: linear-gradient(135deg, #8ab4f8 0%, #aecbfa 100%);
+    padding: 10px;
+    border-radius: 50%;
+    border: 2px solid #8ab4f8;
+    box-shadow: 0 4px 12px rgba(138, 180, 248, 0.4);
+    filter: brightness(1.1) contrast(1.2);
+    animation: sendPulse 2s infinite;
+}
+
+.search-box img[alt="Send message"]:hover {
+    background: linear-gradient(135deg, #aecbfa 0%, #8ab4f8 100%);
+    border-color: #aecbfa;
+    transform: scale(1.25) translateY(-3px);
+    box-shadow: 0 8px 25px rgba(138, 180, 248, 0.5);
+    filter: brightness(1.3) contrast(1.3);
+    animation: none;
+}
+
+@keyframes sendPulse {
+    0%, 100% {
+        box-shadow: 0 4px 12px rgba(138, 180, 248, 0.4);
+    }
+    50% {
+        box-shadow: 0 4px 12px rgba(138, 180, 248, 0.6);
+    }
+}
+
+/* Specific styling for gallery and mic icons */
+.search-box img[alt="Upload image"],
+.search-box img[alt="Voice input"] {
+    background: linear-gradient(135deg, #3a3a3a 0%, #4a4a4a 100%);
+    border: 1px solid #5a5a5a;
+    filter: brightness(1.3) contrast(1.2);
+}
+
+.search-box img[alt="Upload image"]:hover,
+.search-box img[alt="Voice input"]:hover {
+    background: linear-gradient(135deg, #4a4a4a 0%, #5a5a5a 100%);
+    border-color: #8ab4f8;
+    filter: brightness(1.5) contrast(1.3);
 }
 
 .main .bottom-info{
@@ -226,14 +346,36 @@
 .result{
     padding: 0px 5%;
     margin-bottom: 40px;
+    max-width: 100%;
 }
 
 .result-title{
-    margin: 40px 0px;
+    margin: 40px 0px 20px 0px;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     gap: 20px;
     color: #e3e3e3;
+    padding: 20px;
+    background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+    border-radius: 16px;
+    border: 1px solid #3c4043;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    position: relative;
+}
+
+.result-title::before {
+    content: "You";
+    position: absolute;
+    top: -8px;
+    left: 20px;
+    background: #8ab4f8;
+    color: #0f0f0f;
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
 .result img{
@@ -249,6 +391,27 @@
     align-items: flex-start;
     gap: 20px;
     margin-bottom: 30px;
+    padding: 20px;
+    background: linear-gradient(135deg, #1e1e1e 0%, #2a2a2a 100%);
+    border-radius: 16px;
+    border: 1px solid #3c4043;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    position: relative;
+}
+
+.result-data::before {
+    content: "Gemini";
+    position: absolute;
+    top: -8px;
+    left: 20px;
+    background: linear-gradient(135deg, #8ab4f8 0%, #f28b82 100%);
+    color: #0f0f0f;
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
 .response-content {
@@ -326,6 +489,15 @@
         background-position: 200% 0;
         opacity: 0.6;
     }
+}
+
+.result-title p {
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 1.6;
+    color: #e3e3e3;
+    margin: 0;
+    padding-top: 8px;
 }
 
 .result-data p {
@@ -417,11 +589,22 @@
     
     .search-box {
         gap: 12px;
-        padding: 10px 16px;
+        padding: 12px 18px;
     }
     
     .search-box input {
         font-size: 15px;
+        padding: 6px 10px;
+    }
+    
+    .search-box img {
+        width: 22px;
+        padding: 6px;
+        filter: brightness(1.3) contrast(1.2);
+    }
+    
+    .search-box img[alt="Send message"] {
+        padding: 8px;
     }
     
     .result {
@@ -430,11 +613,19 @@
     
     .result-data {
         gap: 15px;
+        padding: 15px;
     }
     
     .result-title {
         margin: 30px 0;
         gap: 15px;
+        padding: 15px;
+    }
+    
+    .result-title::before,
+    .result-data::before {
+        font-size: 11px;
+        padding: 3px 10px;
     }
 }
 
@@ -477,16 +668,22 @@
     
     .search-box {
         gap: 10px;
-        padding: 8px 14px;
+        padding: 10px 16px;
     }
     
     .search-box input {
         font-size: 14px;
-        padding: 6px;
+        padding: 6px 8px;
     }
     
     .search-box img {
         width: 20px;
+        padding: 5px;
+        filter: brightness(1.4) contrast(1.3);
+    }
+    
+    .search-box img[alt="Send message"] {
+        padding: 7px;
     }
     
     .main .bottom-info {
@@ -500,6 +697,7 @@
     
     .result-data {
         gap: 12px;
+        padding: 12px;
     }
     
     .result-data img {
@@ -509,10 +707,18 @@
     .result-title {
         margin: 25px 0;
         gap: 12px;
+        padding: 12px;
     }
     
     .result-title img {
         width: 35px;
+    }
+    
+    .result-title::before,
+    .result-data::before {
+        font-size: 10px;
+        padding: 2px 8px;
+        top: -6px;
     }
     
 }
