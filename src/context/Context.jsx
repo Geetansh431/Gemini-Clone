@@ -1,9 +1,10 @@
 import { createContext, useState } from "react";
+import PropTypes from "prop-types";
 import run from "../config/gemini";
 
 export const Context = createContext();
 
-const ContextProvider = (props) => {
+const ContextProvider = ({ children }) => {
 
     const [input,setInput] = useState("");
     const [recentPrompt,setRecentPrompt] = useState("");
@@ -79,9 +80,13 @@ const ContextProvider = (props) => {
 
     return (
         <Context.Provider value={contextValue}>
-            {props.children}
+            {children}
         </Context.Provider>
     )
 }
+
+ContextProvider.propTypes = {
+    children: PropTypes.node.isRequired,
+};
 
 export default ContextProvider

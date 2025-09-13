@@ -4,13 +4,9 @@
  * $ npm install @google/generative-ai
  */
 
-import  {
-    GoogleGenerativeAI,
-    HarmCategory,
-    HarmBlockThreshold,
-  } from "@google/generative-ai";
+import  { GoogleGenerativeAI } from "@google/generative-ai";
   
-  const apiKey = "AIzaSyCQiicIMH0ax3OCd56KPY8UjErdNIjdAYg";
+  const apiKey = "AIzaSyBdLffCL84Um7GpFrZ1x8RSqkxAyjQFFk8";
   const genAI = new GoogleGenerativeAI(apiKey);
   
   const model = genAI.getGenerativeModel({
@@ -28,8 +24,6 @@ import  {
   async function run(prompt) {
     const chatSession = model.startChat({
       generationConfig,
-   // safetySettings: Adjust safety settings
-   // See https://ai.google.dev/gemini-api/docs/safety-settings
       history: [
       ],
     });
