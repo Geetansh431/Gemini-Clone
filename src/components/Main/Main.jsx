@@ -149,7 +149,7 @@ export const Main = () => {
                       aria-label="Enter your message"
                   />
                   <div>
-                     {input && !isProcessing?<img onClick={()=>onSent()} src={assets.send_icon} alt="Send message" title="Send message" />:null} 
+                     {input && !isProcessing?<button onClick={()=>onSent()} className="send-arrow" title="Send message">→</button>:null} 
                   </div>
               </div>
               <p className="bottom-info">

@@ -98,7 +98,6 @@ const ContextProvider = ({ children }) => {
     
     const contextValue = {
         onSent,
-        setRecentPrompt,
         recentPrompt,
         showResult,
         loading,
@@ -106,7 +105,8 @@ const ContextProvider = ({ children }) => {
         input,
         setInput,
         newChat,
-        error
+        error,
+        isProcessing
     }
 
     return (
