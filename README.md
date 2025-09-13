@@ -1,5 +1,5 @@
 
-# Gemini 2.0
+# Gemini-Clone
 
 This project is a React-based user interface for interacting with the Google Gemini API, utilizing the Generative AI SDK. The application allows users to input prompts and receive generative responses from the Gemini model.
 
@@ -17,7 +17,7 @@ This project is a React-based user interface for interacting with the Google Gem
 Clone the project
 
 ```bash
-  git clone https://github.com/Geetansh431/Gemini-
+  git clone https://github.com/Geetansh431/Gemini-Clone
 ```
 
 Go to the frontend directory 
@@ -39,7 +39,7 @@ npm run dev
 
 ## Demo
 
-https://clone-gemini.vercel.app/
+
 ## Contributing to Gemini Clone 🤝
 
 We welcome and appreciate contributions from the community to enhance and improve the Gemini Clone project. Whether you're a developer, designer, tester, or someone with valuable feedback, your input is invaluable to us.
