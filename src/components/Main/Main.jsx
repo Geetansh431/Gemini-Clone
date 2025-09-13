@@ -149,8 +149,6 @@ export const Main = () => {
                       aria-label="Enter your message"
                   />
                   <div>
-                      <img src={assets.gallery_icon} alt="Upload image" title="Upload image" />
-                      <img src={assets.mic_icon} alt="Voice input" title="Voice input" />
                      {input && !isProcessing?<img onClick={()=>onSent()} src={assets.send_icon} alt="Send message" title="Send message" />:null} 
                   </div>
               </div>
