@@ -6,12 +6,25 @@ import { TextRenderer } from '../TextRenderer/TextRenderer'
 
 export const Main = () => {
 
-  const {onSent,recentPrompt,showResult,loading,resultData,setInput,input,error,isProcessing} = useContext(Context)
+  const {onSent,recentPrompt,showResult,loading,resultData,setInput,input,error,isProcessing,newChat} = useContext(Context)
 
   return (
     <div className='app-container'>
       
       <div className="main main-with-sidebar">
+        {/* New Chat Button */}
+        <div className="new-chat-container">
+          <button 
+            className="new-chat-button" 
+            onClick={newChat}
+            disabled={isProcessing}
+            aria-label="Start a new chat"
+          >
+            <span className="new-chat-icon">+</span>
+            <span className="new-chat-text">New Chat</span>
+          </button>
+        </div>
+        
         <div className={`main-container ${!showResult ? 'welcome-state' : 'chat-state'}`}>
 
           {!showResult
