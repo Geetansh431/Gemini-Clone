@@ -8,7 +8,6 @@ const ContextProvider = ({ children }) => {
 
     const [input,setInput] = useState("");
     const [recentPrompt,setRecentPrompt] = useState("");
-    const [prevPrompts,setPrevPrompts] = useState([]);
     const [showResult,setShowResult] = useState(false);
     const [loading,setLoading] = useState(false);
     const [resultData,setResultData] = useState("");
@@ -69,7 +68,6 @@ const ContextProvider = ({ children }) => {
                 response = await run(prompt);
                 setRecentPrompt(prompt);
             } else {
-                setPrevPrompts(prev => [...prev, input]);
                 setRecentPrompt(input);
                 response = await run(input);
             }
@@ -106,8 +104,6 @@ const ContextProvider = ({ children }) => {
 
     
     const contextValue = {
-        prevPrompts,
-        setPrevPrompts,
         onSent,
         setRecentPrompt,
         recentPrompt,
