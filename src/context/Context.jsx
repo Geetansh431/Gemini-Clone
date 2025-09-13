@@ -42,6 +42,7 @@ const ContextProvider = ({ children }) => {
         setIsProcessing(false);
     }
 
+
     const onSent = async (prompt) => {
         // Prevent multiple simultaneous requests
         if (isProcessing) {

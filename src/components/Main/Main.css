@@ -1,3 +1,10 @@
+/* App Container */
+.app-container {
+    min-height: 100vh;
+    background-color: #0f0f0f;
+    position: relative;
+}
+
 .main{
     width: 100%;
     min-height: 100vh;
@@ -5,60 +12,34 @@
     position: relative;
     background-color: #0f0f0f;
     color: #e3e3e3;
+    transition: margin-left 0.3s ease, width 0.3s ease;
+    overflow-y: auto;
 }
 
-/* Navigation - Responsive */
-.main .nav{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    font-size: 18px;
-    padding: 15px 20px;
-    color: #e3e3e3;
-    border-bottom: 1px solid #2d2d2d;
-    background-color: #0f0f0f;
+/* Always account for sidebar */
+.main-with-sidebar {
+    margin-left: 280px;
+    width: calc(100% - 280px);
 }
 
-.main .nav p {
-    font-weight: 600;
-    margin: 0;
-}
 
-.nav-actions {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
-
-.new-chat-btn {
-    background: #8ab4f8;
-    color: #0f0f0f;
-    border: none;
-    padding: 8px 16px;
-    border-radius: 20px;
-    cursor: pointer;
-    font-size: 14px;
-    font-weight: 600;
-    transition: all 0.3s ease;
-}
-
-.new-chat-btn:hover {
-    background: #aecbfa;
-    transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(138, 180, 248, 0.3);
-}
-
-.main .nav img{
-    width: 35px;
-    height: 35px;
-    border-radius: 50%;
-    object-fit: cover;
-}
 
 .main-container{
     max-width: 900px;
     margin: auto;
-    padding: 0 15px;
+    padding: 20px 15px;
+    min-height: calc(100vh - 15vh);
+}
+
+.main-container.welcome-state {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.main-container.chat-state {
+    padding-top: 20px;
+    padding-bottom: 140px; /* Space for fixed input */
 }
 .main .greet{
     margin: 40px 0px;
@@ -117,15 +98,23 @@
     border-color: #8ab4f8;
 }
 .main-bottom{
-    position: absolute;
+    position: fixed;
     bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 100%;
+    left: 0;
+    right: 0;
     max-width: 900px;
+    margin: 0 auto;
     padding: 0px 20px;
     background: linear-gradient(transparent, #0f0f0f 20%);
     padding-top: 30px;
+    z-index: 100;
+    transition: left 0.3s ease, right 0.3s ease;
+}
+
+/* Always adjust for sidebar */
+.main-with-sidebar .main-bottom {
+    left: 280px;
+    right: 0;
 }
 .search-box{
     display: flex;
@@ -188,13 +177,7 @@
 
 .result{
     padding: 0px 5%;
-    max-height: 70vh;
-    overflow-y: auto;
-    margin-bottom: 20px;
-}
-
-.result::-webkit-scrollbar{
-    display: none;
+    margin-bottom: 40px;
 }
 
 .result-title{
@@ -207,7 +190,10 @@
 
 .result img{
     width: 40px;
+    height: 40px;
     border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
 }
 
 .result-data{
@@ -220,6 +206,7 @@
 .response-content {
     flex: 1;
     min-width: 0; /* Allows text to wrap properly */
+    margin-top: 2px; /* Align with Gemini icon */
 }
 
 /* Response boundary styling */
@@ -250,16 +237,33 @@
     width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 12px;
+    align-items: flex-start;
 }
+
 .loader hr{
-    border-radius: 4px;
+    border-radius: 6px;
     border: none;
     background-color: #2d2d2d;
     background: linear-gradient(to right, #3c4043, #5f6368, #3c4043);
     background-size: 800px 50px;
-    height: 20px;
+    height: 16px;
     animation: loader 3s infinite linear;
+    margin: 0;
+}
+
+.loader hr:nth-child(1){
+    width: 90%;
+}
+
+.loader hr:nth-child(2){
+    width: 75%;
+    animation-delay: 0.5s;
+}
+
+.loader hr:nth-child(3){
+    width: 60%;
+    animation-delay: 1s;
 }
 
 @keyframes loader{
@@ -312,13 +316,8 @@
 
 /* ===== RESPONSIVE DESIGN ===== */
 
-/* Tablet - 768px and below */
+/* Responsive adjustments for smaller screens */
 @media (max-width: 768px) {
-    .main .nav {
-        font-size: 16px;
-        padding: 12px 15px;
-    }
-    
     .main .greet {
         font-size: 36px;
         margin: 30px 0;
@@ -367,27 +366,12 @@
         margin: 30px 0;
         gap: 15px;
     }
-    
-    .new-chat-btn {
-        padding: 6px 12px;
-        font-size: 13px;
-    }
 }
 
 /* Mobile - 480px and below */
 @media (max-width: 480px) {
     .main {
         padding-bottom: 18vh;
-    }
-    
-    .main .nav {
-        font-size: 15px;
-        padding: 10px 12px;
-    }
-    
-    .main .nav img {
-        width: 30px;
-        height: 30px;
     }
     
     .main .greet {
@@ -461,14 +445,6 @@
         width: 35px;
     }
     
-    .new-chat-btn {
-        padding: 5px 10px;
-        font-size: 12px;
-    }
-    
-    .nav-actions {
-        gap: 10px;
-    }
 }
 
 /* Extra small mobile - 360px and below */
