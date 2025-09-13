@@ -54,22 +54,6 @@ export const Sidebar = () => {
             </div>
           </div>
         </div>
-
-        {/* Footer */}
-        <div className="sidebar-footer">
-          <div className="sidebar-footer-item">
-            <img src={assets.question_icon} alt="Help" />
-            <span>Help</span>
-          </div>
-          <div className="sidebar-footer-item">
-            <img src={assets.setting_icon} alt="Settings" />
-            <span>Settings</span>
-          </div>
-          <div className="sidebar-footer-item">
-            <img src={assets.history_icon} alt="Activity" />
-            <span>Activity</span>
-          </div>
-        </div>
       </div>
   );
 };
