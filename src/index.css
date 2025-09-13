@@ -16,8 +16,8 @@ html {
 
 body {
   line-height: 1.6;
-  color: #333;
-  background-color: #fff;
+  color: #e3e3e3;
+  background-color: #0f0f0f;
   overflow-x: hidden;
 }
 
@@ -57,7 +57,7 @@ html {
 /* Focus styles for accessibility */
 button:focus,
 input:focus {
-  outline: 2px solid #4285f4;
+  outline: 2px solid #8ab4f8;
   outline-offset: 2px;
 }
 

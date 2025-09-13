@@ -1,6 +1,6 @@
 .text-renderer {
   line-height: 1.6;
-  color: inherit;
+  color: #e3e3e3;
   font-size: 17px;
   font-weight: 300;
 }
@@ -17,7 +17,7 @@
 .text-renderer .text-heading {
   margin: 1.5em 0 1em 0;
   font-weight: 600;
-  color: #333;
+  color: #f8f9fa;
 }
 
 .text-renderer h1 {
@@ -44,7 +44,7 @@
 
 .text-renderer strong {
   font-weight: 600;
-  color: inherit;
+  color: #f8f9fa;
 }
 
 .text-renderer br {

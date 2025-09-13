@@ -3,6 +3,8 @@
     min-height: 100vh;
     padding-bottom: 15vh;
     position: relative;
+    background-color: #0f0f0f;
+    color: #e3e3e3;
 }
 
 /* Navigation - Responsive */
@@ -12,8 +14,9 @@
     justify-content: space-between;
     font-size: 18px;
     padding: 15px 20px;
-    color: #585858;
-    border-bottom: 1px solid #f0f4f9;
+    color: #e3e3e3;
+    border-bottom: 1px solid #2d2d2d;
+    background-color: #0f0f0f;
 }
 
 .main .nav p {
@@ -28,20 +31,21 @@
 }
 
 .new-chat-btn {
-    background: #4285f4;
-    color: white;
+    background: #8ab4f8;
+    color: #0f0f0f;
     border: none;
     padding: 8px 16px;
     border-radius: 20px;
     cursor: pointer;
     font-size: 14px;
-    font-weight: 500;
+    font-weight: 600;
     transition: all 0.3s ease;
 }
 
 .new-chat-btn:hover {
-    background: #3367d6;
+    background: #aecbfa;
     transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(138, 180, 248, 0.3);
 }
 
 .main .nav img{
@@ -59,14 +63,14 @@
 .main .greet{
     margin: 40px 0px;
     font-size: 48px;
-    color: #c4c7c5;
+    color: #9aa0a6;
     font-weight: 500;
     padding: 20px;
     text-align: center;
 }
 
 .main .greet span{
-    background: -webkit-linear-gradient(16deg,#4b90ff,#ff5546);
+    background: -webkit-linear-gradient(16deg, #8ab4f8, #f28b82);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
@@ -82,34 +86,35 @@
 .main .card{
     min-height: 180px;
     padding: 20px;
-    background-color: #f0f4f9;
+    background-color: #1e1e1e;
     border-radius: 12px;
     position: relative;
     cursor: pointer;
     transition: all 0.3s ease;
-    border: 1px solid transparent;
+    border: 1px solid #3c4043;
 }
 
 .main .card img{
     width: 35px;
     padding: 5px;
     position: absolute;
-    background-color: white;
+    background-color: #3c4043;
     border-radius: 20px;
     bottom: 10px;
     right: 10px;
+    filter: brightness(1.2);
 }
 
 .main .card p{
-    color: #585858;
+    color: #e3e3e3;
     font-size: 17px;
 }
 
 .main .card:hover{
-    background-color: #dfe4ea;
+    background-color: #2d2d2d;
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    border-color: #c4c7c5;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    border-color: #8ab4f8;
 }
 .main-bottom{
     position: absolute;
@@ -119,7 +124,7 @@
     width: 100%;
     max-width: 900px;
     padding: 0px 20px;
-    background: linear-gradient(transparent, white 20%);
+    background: linear-gradient(transparent, #0f0f0f 20%);
     padding-top: 30px;
 }
 .search-box{
@@ -127,17 +132,17 @@
     align-items: center;
     justify-content: space-between;
     gap: 15px;
-    background-color: #f0f4f9;
+    background-color: #1e1e1e;
     padding: 12px 20px;
     border-radius: 50px;
-    border: 2px solid transparent;
+    border: 2px solid #3c4043;
     transition: all 0.3s ease;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
 }
 
 .search-box:focus-within {
-    border-color: #4285f4;
-    box-shadow: 0 4px 16px rgba(66, 133, 244, 0.15);
+    border-color: #8ab4f8;
+    box-shadow: 0 4px 16px rgba(138, 180, 248, 0.25);
 }
 .search-box img{
     width: 24px;
@@ -155,11 +160,11 @@
     outline: none;
     padding: 8px;
     font-size: 16px;
-    color: #333;
+    color: #e3e3e3;
 }
 
 .search-box input::placeholder {
-    color: #9aa0a6;
+    color: #80868b;
 }
 
 .search-box input:disabled{
@@ -178,6 +183,7 @@
     margin: 15px auto;
     text-align: center;
     font-weight: 300;
+    color: #9aa0a6;
 }
 
 .result{
@@ -195,7 +201,8 @@
     margin: 40px 0px;
     display: flex;
     align-items: center;
-    gap: 20px;   
+    gap: 20px;
+    color: #e3e3e3;
 }
 
 .result img{
@@ -225,13 +232,13 @@
 .response-separator {
     width: 60px;
     height: 2px;
-    background: linear-gradient(90deg, transparent, #4285f4, transparent);
+    background: linear-gradient(90deg, transparent, #8ab4f8, transparent);
     margin: 0 auto 15px;
     border-radius: 2px;
 }
 
 .response-complete-text {
-    color: #5f6368;
+    color: #9aa0a6;
     font-size: 13px;
     font-weight: 500;
     margin: 0;
@@ -248,8 +255,8 @@
 .loader hr{
     border-radius: 4px;
     border: none;
-    background-color: #f6f7f8;
-    background: linear-gradient(to right,#9ed7ff,#ffffff,#9ed7ff);
+    background-color: #2d2d2d;
+    background: linear-gradient(to right, #3c4043, #5f6368, #3c4043);
     background-size: 800px 50px;
     height: 20px;
     animation: loader 3s infinite linear;
@@ -268,12 +275,16 @@
     font-size: 17px;
     font-weight: 300;
     line-height: 1.8;
+    color: #e3e3e3;
 }
 
 .error-message {
     padding: 20px;
     text-align: center;
-    color: #ff4444;
+    color: #f28b82;
+    background-color: #2d1b1b;
+    border-radius: 12px;
+    border: 1px solid #5f3030;
 }
 
 .error-message p {
@@ -282,18 +293,21 @@
 }
 
 .retry-button {
-    background: #4285f4;
-    color: white;
+    background: #8ab4f8;
+    color: #0f0f0f;
     border: none;
     padding: 10px 20px;
     border-radius: 8px;
     cursor: pointer;
     font-size: 14px;
-    transition: background 0.3s;
+    font-weight: 600;
+    transition: all 0.3s;
 }
 
 .retry-button:hover {
-    background: #3367d6;
+    background: #aecbfa;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(138, 180, 248, 0.3);
 }
 
 /* ===== RESPONSIVE DESIGN ===== */
