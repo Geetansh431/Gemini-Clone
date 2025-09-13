@@ -5,7 +5,7 @@ import { sanitizeHTML } from '../../utils/sanitize';
  * SafeHTML component that renders HTML content safely
  * Uses DOMPurify to sanitize HTML before rendering
  */
-const SafeHTML = ({ content, className = '', ...props }) => {
+export const SafeHTML = ({ content, className = '', ...props }) => {
   if (!content) return null;
 
   const sanitizedContent = sanitizeHTML(content);
@@ -24,4 +24,3 @@ SafeHTML.propTypes = {
   className: PropTypes.string,
 };
 
-export default SafeHTML;

@@ -6,7 +6,7 @@ import './TextRenderer.css';
  * Converts basic markdown-like formatting to React elements
  * This is the safest approach as it doesn't use dangerouslySetInnerHTML
  */
-const TextRenderer = ({ content, className = '' }) => {
+export const TextRenderer = ({ content, className = '' }) => {
   if (!content) return null;
 
   // Split content by line breaks and process each line
@@ -47,4 +47,3 @@ TextRenderer.propTypes = {
   className: PropTypes.string,
 };
 
-export default TextRenderer;

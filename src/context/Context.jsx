@@ -127,4 +127,4 @@ ContextProvider.propTypes = {
     children: PropTypes.node.isRequired,
 };
 
-export default ContextProvider
+export { ContextProvider }

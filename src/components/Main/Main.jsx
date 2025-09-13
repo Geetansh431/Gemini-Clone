@@ -2,9 +2,9 @@ import { useContext } from 'react'
 import './Main.css'
 import { assets } from '../../assets/assets'
 import { Context } from '../../context/Context'
-import TextRenderer from '../TextRenderer/TextRenderer'
+import { TextRenderer } from '../TextRenderer/TextRenderer'
 
-const Main = () => {
+export const Main = () => {
 
     const {onSent,recentPrompt,showResult,loading,resultData,setInput,input,error,isProcessing} = useContext(Context)
 
@@ -101,4 +101,3 @@ const Main = () => {
   )
 }
 
-export default Main
