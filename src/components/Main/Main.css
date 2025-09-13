@@ -91,6 +91,11 @@
 .search-box img{
     width: 24px;
     cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.search-box img:hover{
+    opacity: 0.8;
 }
 .search-box input{
     flex: 1;
@@ -99,6 +104,11 @@
     outline: none;
     padding: 8px;
     font-size: 18px;
+}
+
+.search-box input:disabled{
+    opacity: 0.6;
+    cursor: not-allowed;
 }
 
 .search-box div{

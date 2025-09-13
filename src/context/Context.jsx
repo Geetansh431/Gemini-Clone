@@ -13,6 +13,7 @@ const ContextProvider = ({ children }) => {
     const [loading,setLoading] = useState(false);
     const [resultData,setResultData] = useState("");
     const [error,setError] = useState(null);
+    const [isProcessing, setIsProcessing] = useState(false);
     
     // Ref to track timeouts for cleanup
     const timeoutsRef = useRef([]);
@@ -39,10 +40,18 @@ const ContextProvider = ({ children }) => {
         setShowResult(false);
         setError(null);
         setResultData("");
+        setIsProcessing(false);
     }
 
     const onSent = async (prompt) => {
+        // Prevent multiple simultaneous requests
+        if (isProcessing) {
+            return;
+        }
+
         try {
+            setIsProcessing(true);
+            
             // Clear any existing timeouts
             timeoutsRef.current.forEach(timeoutId => clearTimeout(timeoutId));
             timeoutsRef.current = [];
@@ -51,6 +60,9 @@ const ContextProvider = ({ children }) => {
             setError(null);
             setLoading(true);
             setShowResult(true);
+            
+            // Clear input immediately to prevent multiple submissions
+            setInput("");
             
             let response;
             if(prompt !== undefined){
@@ -82,12 +94,13 @@ const ContextProvider = ({ children }) => {
             }
             
             setLoading(false);
-            setInput("");
+            setIsProcessing(false);
             
         } catch (error) {
             console.error("API Error:", error);
             setError(error.message || "Failed to get response. Please try again.");
             setLoading(false);
+            setIsProcessing(false);
         }
     }
 
